@@ -12,9 +12,17 @@
         <main>
             <div id="riskDashboard"></div>
             <form id="addRiskAssessment">
-    
+                <label for="riskName">Risk Name:</label>
+                <input type="text" id="riskName" name="riskName" required><br><br>
+
+                <label for="riskLevel">Risk Level:</label>
+                <input type="text" id="riskLevel" name="riskLevel" required><br><br>
+
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" required><br><br>
             </form>
-            <button id="riskAssessment">Submit Risk Assessment</button>
+            <button class = "riskIncreaseButton">Increase Risk Levels</button>
+            <button class="riskAssessment">Submit Risk Assessment</button>
         </main>
 
     <footer>

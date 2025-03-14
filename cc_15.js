@@ -47,8 +47,11 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
     else if (riskLevel === "Low"){ //if class is low
         riskCard.classList.add("low-risk")}; //class it low-risk
 
-    colorCodedRiskLevel();} //Call the function to color code the risks
+    colorCodedRiskLevel();  //Call the function to color code the risks 
 
+}
+
+    //Task 4: Color Code based on Risk Level
     function colorCodedRiskLevel(){ //function to color code the risk card by its level
         const highRisks = document.querySelectorAll(".high-risk");  //assign an array of all high risk card
         const medRisks = document.querySelectorAll(".medium-risk"); //assign an array of all medium risk card
@@ -57,8 +60,8 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
             riskCard.style.backgroundColor ="#ff6666"});
         Array.from(medRisks).forEach(riskCard => { //for each card from the medium risks array, color the card yellow
             riskCard.style.backgroundColor ="#ffcc00"});
-        Array.from(lowRisks).forEach(riskcard => { //for each card from the low risks array, color the card green
-            riskcard.style.backgroundColor = "#66ff66"});}
+        Array.from(lowRisks).forEach(riskCard => { //for each card from the low risks array, color the card green
+            riskCard.style.backgroundColor = "#66ff66"});}
     
 
 //Test out risk cards with risk items from the javascript
@@ -98,3 +101,27 @@ newRiskButton.addEventListener('click', (event) => { //the button will do the fo
 
 //Task 4: Categorizing Risk by Level
   //Refer to task 2 for modification 
+
+//Task 5: Implementing Bulk Updates 
+const riskIncreaseButton = document.querySelector('.riskIncreaseButton'); //call the button established in the html that will increase the risk level
+
+riskIncreaseButton.addEventListener('click', (event) => { //when the button is clicked it will do the following
+    event.stopPropagation(); //stop it from bubbling to the dashboard container
+    increaseRiskLevel();}); //call and apply the function
+
+function increaseRiskLevel(){ 
+    const allRiskCards = document.querySelectorAll(".riskCard"); //create an array of all risk cards
+    allRiskCards.forEach(riskCard => { //for each risk card do the following
+        const riskLevelElement = riskCard.querySelector('span'); //establish the risk level from the risk card
+        const currentLevel = riskLevelElement.textContent; //establish the risk level element as a text 
+
+    if (currentLevel === "Risk Level: Low"){ //if current risk level is low
+        riskCard.classList.remove("low-risk"); //remove the current class list
+        riskCard.classList.add("medium-risk"); //update the class to a higher risk
+        riskLevelElement.textContent = "Risk Level: Medium" //update the browser to show the updated risk level
+        colorCodedRiskLevel()} //apply the updated color code
+    else if (currentLevel === "Risk Level: Medium"){ //if current risk level is medium
+            riskCard.classList.remove("medium-risk"); //remove the current class lit
+            riskCard.classList.add("high-risk"); //update the class to a higher risk
+            riskLevelElement.textContent = "Risk Level: High" //update the browser to show the updated risk level
+        colorCodedRiskLevel()}})} //apply the updated color code
