@@ -16,9 +16,6 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
     const riskLabel = document. createElement("span"); //Establish a priority level for the card
     riskLabel.textContent = `Risk Level: ${riskLevel}`; //The risk level will be printed to the card
 
-    if (riskLabel === "high"){ 
-        riskCard.classList.add("high-priority");}  //identify the high class risk levels and add them to their own class in the html
-
     const departmetPara = document. createElement("p"); //Establish a paragraph for the department
     departmetPara.textContent = `Department: ${department}`; //the paragraph will be filled with the department information
 
@@ -30,7 +27,6 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
     //Append the risk card to the risk dashboard 
     riskDashboardByID.appendChild(riskCard)
 
-
     //Task 3: Removing Risk Items
     const resolveButton = document.createElement("button"); //establish a resolve button
     resolveButton.textContent = "Resolve"; //label the button
@@ -41,7 +37,29 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
        //Task 3: removeChild and stopPropagation()
     event.stopPropagation(); //clicking the resolve button will not bubble up to the ticket container
     riskDashboardByID.removeChild(riskCard); //remove the selected support ticket
-});}
+});
+
+    //Task 4: Categorized Risk By Level
+    if (riskLevel === "High"){  //if risk is high 
+        riskCard.classList.add("high-risk")} //class it high-risk
+    else if (riskLevel === "Medium"){ //if risk is medium
+        riskCard.classList.add("medium-risk")} //class it medium-risk
+    else if (riskLevel === "Low"){ //if class is low
+        riskCard.classList.add("low-risk")}; //class it low-risk
+
+    colorCodedRiskLevel();} //Call the function to color code the risks
+
+    function colorCodedRiskLevel(){ //function to color code the risk card by its level
+        const highRisks = document.querySelectorAll(".high-risk");  //assign an array of all high risk card
+        const medRisks = document.querySelectorAll(".medium-risk"); //assign an array of all medium risk card
+        const lowRisks = document.querySelectorAll(".low-risk"); //assign an array of all low risk card
+        Array.from(highRisks).forEach(riskCard => { //for each card from the high risks array, color the card red
+            riskCard.style.backgroundColor ="#ff6666"});
+        Array.from(medRisks).forEach(riskCard => { //for each card from the medium risks array, color the card yellow
+            riskCard.style.backgroundColor ="#ffcc00"});
+        Array.from(lowRisks).forEach(riskcard => { //for each card from the low risks array, color the card green
+            riskcard.style.backgroundColor = "#66ff66"});}
+    
 
 //Test out risk cards with risk items from the javascript
 addRiskItem("Data Breach", "High", "IT");
@@ -50,6 +68,9 @@ addRiskItem("Supply Chain Disruption", "Medium", "Operations");
 //Task 3: Test Resolve
 addRiskItem("Market Fluctuations", "High", "Finance"); //Clicking Resolve removes the card from the dashboard
 
+//Task 4: Test Categorizing Risk Level
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
 
 //The button to submit new risk assessments lets users to input a new risk within the browser
 const newRiskButton = document.querySelector(".riskAssessment"); //establish the button variable
@@ -72,5 +93,8 @@ newRiskButton.addEventListener('click', (event) => { //the button will do the fo
 
 
 //Task 3: Removing Risk Items
-    //Refer to task 2
+    //Refer to task 2 for modification
 
+
+//Task 4: Categorizing Risk by Level
+  //Refer to task 2 for modification 
