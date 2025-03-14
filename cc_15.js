@@ -98,7 +98,6 @@ newRiskButton.addEventListener('click', (event) => { //the button will do the fo
 //Task 3: Removing Risk Items
     //Refer to task 2 for modification
 
-
 //Task 4: Categorizing Risk by Level
   //Refer to task 2 for modification 
 
@@ -125,3 +124,13 @@ function increaseRiskLevel(){
             riskCard.classList.add("high-risk"); //update the class to a higher risk
             riskLevelElement.textContent = "Risk Level: High" //update the browser to show the updated risk level
         colorCodedRiskLevel()}})} //apply the updated color code
+
+//Task 6: Handling Event Propagation
+const riskCardNodes = document.querySelectorAll(".riskCard"); //call every risk card into the variable
+const arrayOfCards = Array.from(riskCardNodes); //the variable is stored into an array of cards
+
+arrayOfCards.forEach( card => {  //for each card in the array 
+    card.addEventListener('click', (event) => { //when a card is clicked
+        event.stopPropagation(); //stop unintended events from affecting the dashboard
+        console.log("Risk Card Clicked: No Action")}) //log the card click message to the console indicating no action
+})
