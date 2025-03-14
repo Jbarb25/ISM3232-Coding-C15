@@ -4,6 +4,7 @@ const riskDashboardByID = document.getElementById("riskDashboard"); //pull the c
 const riskDashboardByQuery = document.querySelector('#riskDashboard');  //pull the container by the query's first instance
 console.log('Risk Dashboard Loaded') //print to the console
 
+
 //Task 2: Adding Risk Items Dynamically
 function addRiskItem(riskName, riskLevel, department){  //add a function that established the parameters to the risk card
     const riskCard = document.createElement("div"); //create a card continer 
@@ -28,11 +29,26 @@ function addRiskItem(riskName, riskLevel, department){  //add a function that es
 
     //Append the risk card to the risk dashboard 
     riskDashboardByID.appendChild(riskCard)
-    }
+
+
+    //Task 3: Removing Risk Items
+    const resolveButton = document.createElement("button"); //establish a resolve button
+    resolveButton.textContent = "Resolve"; //label the button
+    resolveButton.classList.add("resolveButton"); //assign the button the resolveButton class
+    riskCard.appendChild(resolveButton); //append the button to the card
+
+    resolveButton.addEventListener('click', (event) => {
+       //Task 3: removeChild and stopPropagation()
+    event.stopPropagation(); //clicking the resolve button will not bubble up to the ticket container
+    riskDashboardByID.removeChild(riskCard); //remove the selected support ticket
+});}
 
 //Test out risk cards with risk items from the javascript
 addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
+
+//Task 3: Test Resolve
+addRiskItem("Market Fluctuations", "High", "Finance"); //Clicking Resolve removes the card from the dashboard
 
 
 //The button to submit new risk assessments lets users to input a new risk within the browser
@@ -53,3 +69,8 @@ newRiskButton.addEventListener('click', (event) => { //the button will do the fo
     departmentInput.value = ''; //plug in the risk department input info
 
     riskDashboardByID.appendChild(".addRiskAssessment")}); //append the new input card to the risk dashboard to display in browser
+
+
+//Task 3: Removing Risk Items
+    //Refer to task 2
+
